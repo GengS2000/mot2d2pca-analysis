@@ -1,0 +1,15 @@
+dataset: ctf_pseudotruth
+outer_repeats: 30
+inner_folds: 3
+outer_test_fraction: 0.20
+inner_validation_fraction: 0.10
+minimum_observed_per_slice: 5
+seed: 20260714
+T0: 30
+T: 30
+rank_grid: [1, 2, 3, 5]
+lambda_grid: [0.0, 0.01, 0.1, 0.5, 1.0, 2.0]
+sigma_grid: [2.0, 4.0, 8.0, 16.0]
+fixed_rank_for_penalty: [1, 1]
+fixed_penalty_for_rank: [0.1, 8.0]
+failure_rate_threshold: 0.05

@@ -1,0 +1,6 @@
+datasets:
+  ctf_pseudotruth:
+    path: parameter/sim2/ctf_imp_new.nc
+    row_dim: participant
+    col_dim: taxon
+    time_dim: bin

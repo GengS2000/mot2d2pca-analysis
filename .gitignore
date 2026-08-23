@@ -1,0 +1,73 @@
+# Results and data are not tracked in this repository.
+*.csv
+*.tsv
+*.nc
+*.npy
+*.npz
+*.rds
+*.RData
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.parquet
+*.feather
+*.biom
+*.qza
+*.qzv
+*.xlsx
+*.xls
+*.mat
+
+# Figures and documents
+*.png
+*.jpg
+*.jpeg
+*.tiff
+*.tif
+*.pdf
+*.svg
+*.eps
+*.docx
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+
+# Compiled and vendored
+__pycache__/
+*.py[cod]
+*.so
+*.dll
+*.dylib
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+node_modules/
+.Rlib/
+site-packages/
+
+# Caches and editor state
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.Rproj.user/
+.Rhistory
+.RData
+.DS_Store
+Thumbs.db
+
+# Cluster job output
+*.out
+*.err
+logs/
+slurm-*.out

@@ -1,0 +1,71 @@
+figure_table_trace:
+  - artifact_id: figure-main
+    source_data:
+      dataset_id: DIABIMMUNE-new-plus-ECAM-current
+      files:
+        - DIABIMMUNE_data/artifacts/subject_group_existing_methods_r/linda_longitudinal_results.csv
+        - DIABIMMUNE_data/artifacts/subject_group_existing_methods_r/maaslin2_longitudinal_results.csv
+        - ECAM_data/artifacts/ECAM_otu_linda_longitudinal/linda_longitudinal_results.csv
+        - ECAM_data/artifacts/ECAM_otu_linda_longitudinal/maaslin2_longitudinal_results.csv
+    transformation:
+      scripts:
+        - prepare_panel_data.py
+        - make_figure.py
+      sha256:
+        prepare_panel_data.py: 3024219C35AF58CFE3A19CF9F92FE93AC70B9F02A8C3AF4A12D87379403ECCEB
+        make_figure.py: 9B7087D871A0A9D6FB443E7AF58BAC0005BF8C4137CC8FA606D859F02E5D6CEB
+    caption_claim: Completion preserves the engine-dependent discovery pattern while the biological controls remain directionally stable; its biological value is artifact removal read against the observed grid.
+    supported_manuscript_claims:
+      - claim: DIABIMMUNE diet effects inflate similarly under both engines but produce different significant-taxon counts.
+      - claim: ECAM delivery-mode signals strengthen after completion.
+      - claim: Antibiotic exposure has no q<0.05 hit, with one marginal DIABIMMUNE q<0.10 OTU.
+    limitations:
+      - Full-grid imputed rows are deterministic reconstructions and their uncertainty is not propagated by the inference engines.
+
+  - artifact_id: figure-main-panel-e-and-SF9-SF10
+    source_data:
+      dataset_id: exported-tensors-ECAM-DIABIMMUNE
+      files:
+        - ECAM_data/ECAM_otu_tensor_export/tensor_base_raw.nc
+        - ECAM_data/ECAM_otu_tensor_export/tensor_p2d2pca_imputed.nc
+        - ECAM_data/ECAM_otu_tensor_export/participant_bin_observed_sample_mask.nc
+        - ECAM_data/ECAM_otu_tensor_export/tensor_taxon_index.csv
+        - ECAM_data/ECAM_otu_tensor_export/subject_metadata.csv
+        - DIABIMMUNE_data/diabimmune_p2d2pca_netcdf_export/tensors/tensor_base_raw.nc
+        - DIABIMMUNE_data/diabimmune_p2d2pca_netcdf_export/tensors/tensor_p2d2pca_imputed.nc
+        - DIABIMMUNE_data/diabimmune_p2d2pca_netcdf_export/tensors/replace_mask.nc
+        - DIABIMMUNE_data/taxonomy.tsv
+    transformation:
+      scripts:
+        - temporal_check/run_temporal_trajectories.py
+    caption_claim: Full-grid completion is a temporal smoother that manufactures persistence (ECAM Bacteroides C/V 0.36->0.80 observed vs 0.49->0.51 imputed) and compresses developmental succession relative to the Yassour 2016 benchmarks.
+    supported_manuscript_claims:
+      - claim: The observed cesarean Bacteroides deficit is real in year 1 but attenuates by year 2, matching Bokulich; completion freezes it as a spurious persistent full-axis effect.
+      - claim: Completion degrades early-succession fidelity (mean month-2 error vs Yassour 7.5% imputed vs 2.7% base), pulling mature Clostridiales earlier and flattening pioneers.
+      - claim: The methods biological payoff is artifact removal, not novel discovery; trajectory claims must be read against the observed grid.
+    limitations:
+      - Relative abundance is reconstructed by per-slice renormalization of the log-abundance tensors; the dynamic-range compression is intrinsic to low-rank temporal factorization and robust to this choice.
+      - ECAM year-2 observed ratio rests on fewer observed slices (n=109/61) than year-1 (n=294/207).
+
+  - artifact_id: supplementary-figures-SF1-SF8
+    source_data:
+      dataset_id: DIABIMMUNE-new-plus-ECAM-current
+      files:
+        - supp/tables/ST1_all_results_long.csv
+        - supp/tables/ST2_hitcounts_all_contrasts.csv
+        - supp/data/taxon_pairs_long.csv
+        - supp/data/prevalence_base.csv
+    transformation:
+      scripts:
+        - supp_prepare_data.py
+        - supp_make_figures.py
+      sha256:
+        supp_prepare_data.py: 11ABF64BFD97F3D31B519893440066F84D86C2DEAA1440D120D74C11CC83EEC8
+        supp_make_figures.py: 6871AD90D883CAC77D987076AF0202AC51421C746B158EE7ED1D68D2B856C29B
+    caption_claim: Exhaustive contrasts, prevalence diagnostics, row expansion, and control taxa explain the stability and boundary cases of the main result.
+    supported_manuscript_claims:
+      - claim: Modeled rows expand 1.41-fold in DIABIMMUNE and 7.44-fold in ECAM after full-grid completion.
+      - claim: Imputed-only DIABIMMUNE diet hits are concentrated among low-prevalence taxa and imbalanced groups.
+      - claim: The antibiotic analysis remains null at q<0.05 but not strictly at q<0.10.
+    limitations:
+      - SF6 quantifies row expansion but is not a reconstruction-aware corrected refit.

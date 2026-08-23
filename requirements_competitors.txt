@@ -1,0 +1,5 @@
+# Install this into the existing benchmark/controller environment.
+# The Git commit is pinned because competitor_methods.py uses gemelli's
+# tensor_rclr, tenals and construct_tensor APIs directly.
+gemelli @ git+https://github.com/biocore/gemelli.git@c53c9ee958948683bc4216cf5fa447e2c3ac4806
+

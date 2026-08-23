@@ -1,0 +1,17 @@
+partition: hebhcnormal02
+account: ""
+conda_init: ~/miniconda3/bin/activate
+conda_env: micro3dimp
+cpus_per_task: 1
+mem: 3G
+time: 04:00:00
+# Number of Slurm array workers.  Each worker runs a strided subset of the
+# manifest sequentially.  Keep one of the account's 200 submitted-job slots
+# free for the dependent aggregation job.
+max_array_tasks: 199
+array_concurrency: 100
+submit_job_limit: 200
+# Relative to robustness_suite unless an absolute path is supplied.  This
+# deliberately avoids a pre-existing, non-writable `outputs` directory.
+output_dir: results
+task_retries: 2

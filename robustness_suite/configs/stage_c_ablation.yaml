@@ -1,0 +1,11 @@
+dataset: ctf_pseudotruth
+fractions: [0.5, 0.8]
+mechanisms: [random, time_window, subject_dropout]
+repeats: 30
+minimum_observed_per_slice: 5
+seed: 20260716
+T0: 30
+T: 30
+# `no_taxa_penalty` is deliberately excluded: the formal implementation has
+# no independent taxa/overlap penalty parameter to remove.
+variants: [full, no_temporal, no_mask_awareness, plain_2d2pca, row_2dpca, column_2dpca, temporal_only, low_rank_only]
